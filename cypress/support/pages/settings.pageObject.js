@@ -4,17 +4,19 @@ class SettingsPageObject extends PageObject{
     url = '/settings';
 
     get updateSettingsButton() {
-        return cy.get('button').contains('Update Settings');
+        return cy.get('[data-cy="update-settings-btn"]')
+            .contains('Update Settings');
     }
 
-    changeItem(placeholder, value) {
-        cy.get(`[placeholder="${placeholder}"]`).as('inputField');
+    changeItem(dataCY, value) {
+        cy.get(`[data-cy="${dataCY}"]`).as('inputField');
         cy.get('@inputField').clear();
         cy.get('@inputField').type(value);
     }
 
-    checkUrl(username) {
-        cy.url().should('include', `/profile/${username}`);
+    checkInput(dataCY, value) {
+        cy.get(`[data-cy="${dataCY}"]`).as('newInputField');
+        cy.get('@newInputField').should('have.value', value);
     }
 
     clickUpdateSettingsBtn() {
