@@ -4,8 +4,7 @@ class SettingsPageObject extends PageObject{
     url = '/settings';
 
     get updateSettingsButton() {
-        return cy.get('[data-cy="update-settings-btn"]')
-            .contains('Update Settings');
+        return cy.get('[data-cy="update-settings-btn"]');
     }
 
     changeItem(dataCY, value) {
